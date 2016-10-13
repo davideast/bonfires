@@ -108,6 +108,18 @@ gulp.task('generate:service-worker', function(callback) {
   }, callback);
 });
 
-gulp.task('copy', ['compile:handlebars:static', 'copy:css', 'copy:js:vendor', 'copy:images']);
+gulp.task('firebase:package', () => 
+  gulp
+    .src('js/firebase.package.js')
+    .pipe(gulp.dest('../public/vendor/firebase'))
+);
+
+gulp.task('copy', [
+  'compile:handlebars:static', 
+  'copy:css', 
+  'copy:js:vendor', 
+  'copy:images', 
+  'firebase:package'
+]);
 
 gulp.task('default', ['copy']);

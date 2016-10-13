@@ -15,7 +15,7 @@ System.config({
 
   packages: {
     'firebase': {
-      main: 'firebase-browser.js',
+      main: 'firebase.package.js',
       defaultExtension: 'js'
     },
     'app': {

@@ -8,7 +8,6 @@
         "typeRoots": [
             "./node_modules/@types"
         ],
-        "skipLibCheck": true,
         "types": [
             "firebase",
             "handlebars",
