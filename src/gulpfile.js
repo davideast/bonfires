@@ -1,10 +1,10 @@
 const gulp = require('gulp');
 const handlebars = require('gulp-compile-handlebars');
 const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
- 
+const uncss = require('gulp-uncss');
+
 gulp.task('uncss', function () {
-  return gulp.src('./css/material.blue-orange.min.css')
+  return gulp.src('css/*.css')
     .pipe(uncss({
       html: ['../public/index.html']
     }))
@@ -15,40 +15,40 @@ gulp.task('copy:root', () => gulp
   .src([
 
   ])
-  .pipe(gulp.dest('public')
+  .pipe(gulp.dest('../public')
 ));
 
 gulp.task('copy:firebase:vendor', () => 
   gulp.src([
-    './src/node_modules/firebase/*.js', 
-    './src/node_modules/firebase/*/**.js', 
+    'node_modules/firebase/*.js', 
+    'node_modules/firebase/*/**.js', 
   ])
-  .pipe(gulp.dest('public/vendor/firebase'))
+  .pipe(gulp.dest('../public/vendor/firebase'))
 );
 
 gulp.task('copy:js:vendor', ['copy:firebase:vendor'], () => gulp
   .src([
-    './src/node_modules/handlebars/dist/handlebars.runtime.min.js',
-    './src/node_modules/material-design-lite/material.min.js',
-    './src/node_modules/systemjs/dist/system.js',
-    './src/node_modules/systemjs/dist/system.js.map'
+    'node_modules/handlebars/dist/handlebars.runtime.min.js',
+    'node_modules/material-design-lite/material.min.js',
+    'node_modules/systemjs/dist/system.js',
+    'node_modules/systemjs/dist/system.js.map'
   ])
-  .pipe(gulp.dest('public/vendor'))
+  .pipe(gulp.dest('../public/vendor'))
 );
 
 gulp.task('copy:css', () => gulp
   .src([
-    './src/css/styles.css',
-    './src/css/material.blue-orange.min.css'
+    'css/styles.css',
+    'css/material.blue-orange.min.css'
   ])
-  .pipe(gulp.dest('public/css'))
+  .pipe(gulp.dest('../public/css'))
 );
 
 gulp.task('copy:images', () => gulp
   .src([
-    './src/images/**/*'
+    'images/**/*'
   ])
-  .pipe(gulp.dest('public/images'))
+  .pipe(gulp.dest('../public/images'))
 );
 
 gulp.task('compile:handlebars:static', function () {
@@ -89,19 +89,18 @@ gulp.task('compile:handlebars:static', function () {
     ]
   };
   const options = {
-    batch: ['./src/templates/partials']
+    batch: ['templates/partials']
   };
-
-  return gulp.src('src/templates/main.handlebars')
+  return gulp.src('./templates/main.handlebars')
     .pipe(handlebars(templateData, options))
     .pipe(rename('index.html'))
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('../public'));
 });
 
 gulp.task('generate:service-worker', function(callback) {
   const path = require('path');
   const swPrecache = require('sw-precache');
-  const rootDir = 'public';
+  const rootDir = '../public';
 
   swPrecache.write(path.join(rootDir, 'service-worker.js'), {
     staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}'],
@@ -111,4 +110,4 @@ gulp.task('generate:service-worker', function(callback) {
 
 gulp.task('copy', ['compile:handlebars:static', 'copy:css', 'copy:js:vendor', 'copy:images']);
 
-gulp.task('default', ['copy', 'generate:service-worker']);
+gulp.task('default', ['copy']);
