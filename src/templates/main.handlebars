@@ -1,55 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Bonfires</title>
-
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
-
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
-
-    <link rel="shortcut icon" href="images/favicon.png">
-
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
-
-    <!--
-      PRELOAD
-    -->
-    <link rel="preload" href="vendor/firebase/auth.js">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold&amp;lang=en">
-    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
-    <link rel="stylesheet" href="css/material.blue-orange.min.css" />
-    <link rel="stylesheet" href="css/styles.css">
-    <style>
-    #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 20px;
-      margin-bottom: 20px;
-      z-index: 900;
-      cursor: pointer;
-    }
-    </style>
-  </head>
+  {{> resources }}
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       
@@ -77,7 +28,55 @@
     <script src="vendor/system.js"></script>
     <script src="js/app.system-config.js"></script>
     <script>
-      System.import('app');
+      
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js', {scope: '/'}).then(reg => {
+          const installWorker = reg.install;
+          const waitingWorker = reg.waiting;
+
+          console.log('🔥🔥🔥🔥');
+          
+          if(!navigator.serviceWorker.controller) { return; }
+
+          if (waitingWorker) {
+            updateReady();
+            return;
+          }
+
+          if (installWorker) {
+            trackInstall(installWorker);  
+          }
+
+          reg.addEventListener('updatefound', function() {
+            trackInstall(reg.installing);
+          });
+
+        }).catch(e => {
+          console.error('🐳🐳🐳🐳', e);
+          throw e;
+        });
+
+        function updateReady() {
+          console.log('update is ready');
+        }
+
+        function trackInstall(worker) {
+          if (worker.state == 'installed') {
+            // update is ready
+            updateReady();
+            return;
+          }
+        }
+
+
+
+      }
+      
+      
+      System.import('app').then(app => {
+        const mainPage = app.MainPage.create();
+        mainPage.listenForFeaturedEvents();
+      });
     </script>
   </body>
 </html>

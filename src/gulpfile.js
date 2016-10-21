@@ -44,6 +44,15 @@ gulp.task('copy:css', () => gulp
   .pipe(gulp.dest('../public/css'))
 );
 
+
+gulp.task('copy:sw', () => gulp
+  .src([
+    'js/sw.js',
+    './manifest.json'
+  ])
+  .pipe(gulp.dest('../public'))
+);
+
 gulp.task('copy:images', () => gulp
   .src([
     'images/**/*'
@@ -119,7 +128,8 @@ gulp.task('copy', [
   'copy:css', 
   'copy:js:vendor', 
   'copy:images', 
-  'firebase:package'
+  'copy:sw',
+  'firebase:package',
 ]);
 
 gulp.task('default', ['copy']);

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && npm run templates && gulp && gulp uncss",
+    "perms": "chmod -R 0775 ../public",
+    "build": "tsc && npm run templates && npm run perms && gulp",
+    "full_build": "npm run build && gulp uncss",
     "test": "echo \"Error: no test specified\" && exit 1",
     "templates": "rm -rf ../public/templates && mkdir ../public/templates/ && handlebars templates/partials/events.handlebars -f ../public/templates/events.template.js"
   },
@@ -20,6 +22,7 @@
   "dependencies": {
     "@types/core-js": "^0.9.34",
     "@types/handlebars": "^4.0.31",
+    "@types/service_worker_api": "0.0.5",
     "@types/systemjs": "^0.19.31",
     "firebase": "^3.4.1",
     "gulp-uglify": "^2.0.0",
