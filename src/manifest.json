@@ -1,9 +1,0 @@
-{
-  "name": "Bonfires",
-  "short_name": "Bonfires",
-  "theme_color": "#2196e9",
-  "background_color": "#2196f3",
-  "display": "fullscreen",
-  "scope": "/",
-  "start_url": "/"
-}
