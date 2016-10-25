@@ -58,25 +58,63 @@
         </div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
-        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-          <a href="#featured" class="mdl-layout__tab is-active">Featured</a>
-          <a href="#features" class="mdl-layout__tab">SF</a>
-          <a href="#features" class="mdl-layout__tab">DEN</a>
-          <a href="#features" class="mdl-layout__tab">LON</a>
-          <a href="#features" class="mdl-layout__tab">BER</a>
-          <a href="/my-events.html" class="mdl-layout__tab mdl-layout__tab-right">My Events</a>
+        <div id="location-nav" class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a data-location="FEATURED" href="#FEATURED" class="mdl-layout__tab is-active">Featured</a>
+          <a data-location="SF" href="#SF" class="mdl-layout__tab">SF</a>
+          <a data-location="DEN" href="#DEN" class="mdl-layout__tab">DEN</a>
+          <a data-location="LON" href="#LON" class="mdl-layout__tab">LON</a>
+          <a data-location="BER" href="#BER" class="mdl-layout__tab">BER</a>
+          <!-- <a data-location="UID" href="#my-events" class="mdl-layout__tab mdl-layout__tab-right">My Events</a> -->
         </div>
       </header>
 
       <main class="mdl-layout__content">
-        <div class="mdl-layout__tab-panel is-active" id="featured">
-      
-          <!-- for each events -->
-          <div id="app-shell-events">
-            <!-- event -->
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">      
+        <div class="mdl-layout__tab-panel is-active">
+
+          <div id="filler-events" class="hide">
+            <section class="show animated fadeIn section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">      
               <header class="section__play-btn mdl-cell mdl-cell--4-col-desktop mdl-cell--3-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-                <!--<img src="images/firebase-logo.jpg">-->
+                <!-- img -->
+              </header>
+
+              <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--5-col-tablet mdl-cell--4-col-phone">
+                <div class="mdl-card__supporting-text">
+                  <h4 class="filler">&nbsp;</h4>
+                  <small class="filler md-card__supporting-text-subtitle">
+                    &nbsp;
+                  </small>
+                  <div class="filler">&nbsp;</div>
+                </div>
+                <div class="filler mdl-card__actions">
+                  <a href="#" class="filler mdl-button"></a>
+                </div>
+              </div>
+            </section>     
+
+            <section class="animated fadeIn section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">      
+              <header class="section__play-btn mdl-cell mdl-cell--4-col-desktop mdl-cell--3-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+                <!-- img -->
+              </header>
+
+              <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--5-col-tablet mdl-cell--4-col-phone">
+                <div class="mdl-card__supporting-text">
+                  <h4 class="filler">&nbsp;</h4>
+                  <small class="filler md-card__supporting-text-subtitle">
+                    &nbsp;
+                  </small>
+                  <div class="filler">&nbsp;</div>
+                </div>
+                <div class="filler mdl-card__actions">
+                  <a href="#" class="filler mdl-button"></a>
+                </div>
+              </div>
+            </section>   
+          </div>
+          <div id="dynamic-events">
+            
+            <section class="animated fadeIn section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">      
+              <header class="section__play-btn mdl-cell mdl-cell--4-col-desktop mdl-cell--3-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+                <!-- img -->
               </header>
             
               <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--5-col-tablet mdl-cell--4-col-phone">
@@ -85,50 +123,15 @@
                   <small class="md-card__supporting-text-subtitle">
                     Berlin, Germany - Nov, 7th
                   </small>
-                  The Firebase Dev Summit is full day event for app developers that will focus on how to use Firebase with your apps. 
+                    The Firebase Dev Summit is full day event for app developers that will focus on how to use Firebase with your apps. 
                 </div>
                 <div class="mdl-card__actions">
                   <a href="#" class="mdl-button">Learn more</a>
                 </div>
               </div>
-            </section>            <!-- event -->
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">      
-              <header class="section__play-btn mdl-cell mdl-cell--4-col-desktop mdl-cell--3-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-                <!--<img src="images/angularconnect.png">-->
-              </header>
-            
-              <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--5-col-tablet mdl-cell--4-col-phone">
-                <div class="mdl-card__supporting-text">
-                  <h4>Angular Connect</h4>
-                  <small class="md-card__supporting-text-subtitle">
-                    London, United Kingdom - Sept, 26th
-                  </small>
-                  AngularConnect is a two day, two track conference featuring talks from the world&#x27;s best Angular experts. 
-                </div>
-                <div class="mdl-card__actions">
-                  <a href="#" class="mdl-button">Learn more</a>
-                </div>
-              </div>
-            </section>            <!-- event -->
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">      
-              <header class="section__play-btn mdl-cell mdl-cell--4-col-desktop mdl-cell--3-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-                <!--<img src="images/angularconnect.png">-->
-              </header>
-            
-              <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--5-col-tablet mdl-cell--4-col-phone">
-                <div class="mdl-card__supporting-text">
-                  <h4>Important Conference</h4>
-                  <small class="md-card__supporting-text-subtitle">
-                    Lexington, United States - Nov, 21st
-                  </small>
-                  This is one of the most important conferences ever. 
-                </div>
-                <div class="mdl-card__actions">
-                  <a href="#" class="mdl-button">Learn more</a>
-                </div>
-              </div>
-            </section>            <!-- event -->
-            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">      
+            </section>            
+
+            <section class="animated fadeIn section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">      
               <header class="section__play-btn mdl-cell mdl-cell--4-col-desktop mdl-cell--3-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
                 <!--<img src="images/angularconnect.png">-->
               </header>
@@ -145,7 +148,12 @@
                   <a href="#" class="mdl-button">Learn more</a>
                 </div>
               </div>
-            </section>          </div>
+            </section>                
+
+            <!-- Add Dynamic Events -->
+          </div>
+
+          
 
         </div>
         
@@ -205,18 +213,20 @@
       </main>
     </div>
 
+    <span class="fadeOut"></span>
+
     <script src="vendor/handlebars.runtime.min.js"></script>
     <script src="js/events.template.js"></script>
-    <!-- non-gzipped -->
+    <!-- non-gzipped 
     <script src="vendor/firebase.js"></script>
+    -->
     <!-- CDN is gzipped -->
     <!-- Non-modular 
     <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
     -->
-    <!-- Modular 
+    <!-- Modular -->
     <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase-database.js"></script>
-      -->
     <script src="js/app.js"></script>
     <script>
       

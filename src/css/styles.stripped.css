@@ -129,7 +129,14 @@ html, body {
   display: block;
 }
 
-.mdl-layout__tab-right {
-  position: absolute;
-  right: 0;
+.filler {
+  background: #dfdfdf;
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
 }

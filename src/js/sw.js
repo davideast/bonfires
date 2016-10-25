@@ -1,4 +1,4 @@
-const VERSION = '0.0.1';
+const VERSION = '0.0.3';
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then(cache => {

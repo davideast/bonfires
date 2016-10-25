@@ -262,3 +262,15 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+.filler {
+  background: #dfdfdf;
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
+}
