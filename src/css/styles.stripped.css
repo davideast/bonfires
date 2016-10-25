@@ -128,8 +128,3 @@ html, body {
   background-color: white;
   display: block;
 }
-
-.mdl-layout__tab-right {
-  position: absolute;
-  right: 0;
-}

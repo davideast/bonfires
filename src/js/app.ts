@@ -44,6 +44,7 @@
         const anchor = e.srcElement;
         const location = e.srcElement.attributes.getNamedItem('data-location').nodeValue;
         this.activeRef = firebase.database().ref().child('locationEvents').child(location);
+        this.container.classList.remove('fadeIn');
         this.container.innerHTML = '';
         this.listenForEvents();
       });
