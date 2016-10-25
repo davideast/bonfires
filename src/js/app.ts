@@ -14,11 +14,13 @@
 
   class App {
     container: HTMLElement;
+    fillerContainer: HTMLElement;
     locationNav: HTMLElement;
     eventsTemplate: Function;
     activeRef: firebase.database.Reference;
     activeListener: any;
     rootRef: firebase.database.Reference;
+    eventCount = 0;
 
     constructor(public firebaseApp: firebase.app.App) {
       this.rootRef = this.firebaseApp.database().ref();
@@ -36,6 +38,7 @@
     getDOMElements() {
       this.container = document.getElementById('dynamic-events');
       this.locationNav = document.getElementById('location-nav');
+      this.fillerContainer = document.getElementById('filler-events');
     }
 
     attachDOMListeners() {
@@ -46,6 +49,10 @@
         this.activeRef = firebase.database().ref().child('locationEvents').child(location);
         this.container.classList.remove('fadeIn');
         this.container.innerHTML = '';
+        this.fillerContainer.classList.remove('hide');
+        this.fillerContainer.classList.remove('fadeOut');
+        this.fillerContainer.classList.add('animated', 'fadeIn');
+        this.eventCount = 0;
         this.listenForEvents();
       });
 
@@ -61,9 +68,15 @@
         this.activeRef.off('child_added', this.activeListener);        
       }
       this.activeListener = this.activeRef.on('child_added', snap => {
+        this.eventCount = this.eventCount + 1;
+        if (this.eventCount === 1) {
+          this.fillerContainer.classList.add('fadeOut');
+          this.fillerContainer.classList.add('hide');
+        } 
         this.renderTemplate(snap.val());
       });
     }
+
 
   }
 

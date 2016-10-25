@@ -128,3 +128,15 @@ html, body {
   background-color: white;
   display: block;
 }
+
+.filler {
+  background: #dfdfdf;
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
+}
