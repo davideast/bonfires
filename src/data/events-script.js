@@ -82,6 +82,20 @@ var events = [
     "city": "SF",
     "shortDate": "2017-01-22T05:44:29Z",
     "description": "sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum"
+  },
+  {
+    "name": "Firebase Developer Summit",
+    "city": "BER",
+    "shortDate": "2016-11-7T05:44:29Z",
+    "description": "The Firebase Dev Summit is full day event for app developers that will focus on how to use Firebase with your apps.",
+    "featured": true
+  },
+  {
+    "name": "Polymer Summit",
+    "city": "LON",
+    "shortDate": "2016-10-17T05:44:29Z",
+    "description": "Join us for two days of talks, codelabs, and breakout sessions from the Polymer team, Googlers, major companies using Polymer and Web Components.",
+    "featured": true
   }
 ];
 
@@ -108,6 +122,7 @@ function formatDate(date) {
 }
 
 events.forEach(event => {
+  let rootRef = firebase.database().ref();
   let cityCode = event.city;
   let newEvent = Object.assign(event, {});
   let cityName = locationMap[cityCode];
@@ -120,5 +135,14 @@ events.forEach(event => {
   newEvent.country = country;
   let pushRef = firebase.database().ref('events').push();
   pushRef.set(event);
-  firebase.database().ref('locationEvents').child(cityCode).child(pushRef.key).set(event);
+  rootRef.child('locationEvents')
+         .child(cityCode)
+         .child(pushRef.key)
+         .set(newEvent);
+  if (newEvent.featured) {
+    rootRef.child('locationEvents')
+           .child('FEATURED')
+           .child(pushRef.key)
+           .set(newEvent);
+  }
 });
