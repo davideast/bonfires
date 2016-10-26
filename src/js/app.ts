@@ -45,6 +45,7 @@
 
       this.locationNav.addEventListener('click', e => {
         const anchor = e.srcElement;
+        if (anchor.tagName !== 'A') { return; }
         const location = e.srcElement.attributes.getNamedItem('data-location').nodeValue;
         this.activeRef = firebase.database().ref().child('locationEvents').child(location);
         this.container.classList.remove('fadeIn');

@@ -1,4 +1,4 @@
-const VERSION = '0.0.3';
+const VERSION = '0.0.4';
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then(cache => {
@@ -7,7 +7,7 @@ self.addEventListener('install', (e) => {
       '/index.html',
       '/js/app.js',
       '/css/material.blue-orange.min.css',
-      '/css/styles.css',
+      '/css/stripped.css',
       '/vendor/handlebars.runtime.min.js',
       '/vendor/firebase.js'
     ]).then(_ => this.skipWaiting());
